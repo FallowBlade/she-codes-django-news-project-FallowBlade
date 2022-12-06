@@ -1,3 +1,5 @@
+{% load static %}
+
 <!doctype html>
 
 <!-- use seperate templates to use accross whole website
@@ -12,7 +14,8 @@ we will INSERT THE REST OF OUR TEMPLATES IN THIS -->
         <meta name="description" content="">
         <meta name="author" content="Hayley van Waas">
         <link href="https://fonts.googleapis.com/css?family=Manjari&display=swap" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="">
+        <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+        {% block stylesheets %}{% endblock%}
     </head>
 
     <body>
@@ -22,9 +25,11 @@ we will INSERT THE REST OF OUR TEMPLATES IN THIS -->
                     <h1>She {Codes} News</h1>
                 </a>
             </div>
+            {% include './nav.html' %}
             <!-- include nav here -->
         </header>
 
         <!-- content blocks here -->
+    {% block content %}{% endblock %}
     </body>
 </html>

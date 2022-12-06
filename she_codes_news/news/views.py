@@ -17,7 +17,10 @@ class IndexView(generic.ListView):
         # This is saying get all of our news stories and use it in the index
         # latest stories = Get all news stories, but ONLY the first 4 stories (0,1,2,3) poisition
         # all_stories = all news stories
-
+class StoryView(generic.DetailView):
+	model = NewsStory
+	template_name = 'news/story.html'
+	context_object_name = 'story'
 # Has a CLASS-BASED VIEW - part 4 of tutorial talk about this.
 # The one's we are doing in class are class-based views
 # CBW is similar to Functions but bit differemt
