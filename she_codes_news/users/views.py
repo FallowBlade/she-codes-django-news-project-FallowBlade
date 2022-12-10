@@ -1,4 +1,4 @@
-# from django.shortcuts import render
+from django.shortcuts import render
 # unsure if above needs to be included (was default)
 
 # Create your views here.
