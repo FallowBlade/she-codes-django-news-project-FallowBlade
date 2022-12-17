@@ -1,20 +1,25 @@
+{% load static %}{% block stylesheets %}
+{% endblock %}{% block content %}
+
+
+<link rel="stylesheet" type="text/css" href="{% static 'news/styles.css' %}">
+
 <div class="story-card" id="story-card-{{ position }}">
     <a href="{% url 'news:story' story.id %}">
-
         {% if story.image_url %}
             <img src = "{{story.image_url}}">
             <!-- TRIED TO LINK FORM IMAGE TO VIEW -->
         {% else %}
-            <img src="https://picsum.photos/600">
+            <img src="https://picsum.photos/600 {{story.id}}">
         {% endif %}
         <div class="story-card-text">
             <h3>{{ story.title }}</h3>
-            <h4>{{ story.author }}</h4>
             <h4>{{ story.pub_date }}</h4>
+            <a href="{% url 'users:AccountProfile' story.author.id %}">{{ story.author}}</a>
         </div>
     </a>
 </div>
 
-
+{% endblock %}
 <!-- displaying info about stories
 context: this is created little boxes for the news stories. It's got CSS in it. You can change it, add your own classes, etc. -->

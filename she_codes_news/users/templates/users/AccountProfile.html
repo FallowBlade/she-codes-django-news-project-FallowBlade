@@ -5,7 +5,11 @@
 <div id="user-blog-intro">
     <h2>{{ user }}'s Stories</h2>
 </div>
-   
+
+{% if request.user.id == user.id %}
+    <a href="{% url 'users:EditProfile' request.user.id %}">Edit Account</a>
+{% endif %}
+
 <div class="user-stories" id="user-stories">
     {% if user_stories %}
         {% for story in user_stories %}
@@ -14,6 +18,7 @@
     {% else %}
         <p>No stories are available.</p>
     {% endif %}
-    {% endblock %}
 </div>
+{% endblock %}
+
 

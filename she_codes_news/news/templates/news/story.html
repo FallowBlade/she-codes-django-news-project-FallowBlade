@@ -1,11 +1,17 @@
-{% extends "base.html" %}
-{% load static %}
+{% extends "base.html" %}{% load static %}{% block stylesheets %}
+{% endblock %}{% block content %}
 
-{% block stylesheets %}
 <link rel="stylesheet" type="text/css" href="{% static 'news/styles.css' %}">
-{% endblock %}
 
-{% block content %}
+<div id="edit-delete-story">
+    {% if story.author == user %}
+    <div class="edit-del-btn">
+        <a href=" {% url 'news:editStory' story.id %}">Edit</a>
+        <a href=" {% url 'news:deleteStory' story.id %}">Delete</a>
+    </div>
+    {% endif %}
+</div>
+
 
 <div id="story-wrapper">
     <h2>{{ story.title }}</h2>
@@ -17,6 +23,7 @@
 </div>
 
 {% endblock %}
+
 <!-- Displays specific story
 update folder of placholder for photos
 update placeholder -->

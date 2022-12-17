@@ -20,21 +20,6 @@
         {% endif %}
     </button>
 
-    <div id="authors">
-        <button> 
-            {% if news_author %}
-        
-            {% for author in news_author %}
-                <a href="{% url 'users:AccountProfile' author.id %}">{{ author }}</a>
-                {% endfor %}
-            {% else %}
-                <p>No authors exist.</p>          
-            {% endif %}
-
-        </button>
-      
-    </div>
-
     <!-- news/createStory -->
     
     <h2>Latest News</h2>

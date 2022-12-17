@@ -9,6 +9,7 @@ from .models import CustomUser
 from .forms import CustomUserCreationForm
 from news.models import NewsStory
 from django.core.exceptions import PermissionDenied
+from .forms import CustomUserChangeForm
 
 class CreateAccountView(CreateView):
     form_class = CustomUserCreationForm
@@ -16,9 +17,14 @@ class CreateAccountView(CreateView):
     template_name = 'users/createAccount.html'
 
 class EditAccountView(generic.UpdateView):
+    form_class = CustomUserChangeForm
     model = CustomUser
-    fields = ['first_name', 'last_name', 'email']
-    template_name = 'users/UpdateView.html'
+    context_object_name= 'createAccount'
+    # fields = ['first_name', 'last_name', 'email']
+    template_name = 'users/createAccount.html'
+    def get_success_url(self):
+        return reverse_lazy('users:AccountProfile', kwargs={'pk':self.object.id})
+
 class AccountProfileView(generic.DetailView):
     model = CustomUser
     template_name = 'users/AccountProfile.html'

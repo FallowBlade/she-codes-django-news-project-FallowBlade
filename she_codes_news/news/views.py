@@ -3,6 +3,7 @@ from django.urls import reverse_lazy
 from .models import NewsStory
 from .forms import StoryForm
 from users.models import CustomUser
+from django.core.exceptions import PermissionDenied
 
 class IndexView(generic.ListView):
     template_name = 'news/index.html'
@@ -46,7 +47,6 @@ class StoryView(generic.DetailView):
 class DeleteStoryView(generic.DeleteView):
     model = NewsStory
     template_name= "news/deleteStory.html"
-    context_object_name= "story"
     success_url = reverse_lazy('news:index')
 
     def get_object(self, queryset=None):
@@ -59,15 +59,16 @@ class DeleteStoryView(generic.DeleteView):
 #If I'm not the owner of story, I can't edit
 class EditStoryView(generic.UpdateView):
     model=NewsStory
-    fields = ['title', 'pub_date', 'category', 'content']
-    template_name= "news/editStory.html"
-    context_object_name="story"
+    form_class = StoryForm
+    # fields = ['title', 'pub_date', 'category', 'content']
+    template_name= "news/createStory.html"
+    context_object_name="storyForm"
     success_url= reverse_lazy('news:index')
 
     def get_object(self, queryset=None):
         obj=super().get_object(queryset)
         if obj.author != self.request.user:
-                raise PermissionError
+                raise PermissionDenied
         return obj
     # def img_form(request)
     #     form.instance.image_url = self.request.form

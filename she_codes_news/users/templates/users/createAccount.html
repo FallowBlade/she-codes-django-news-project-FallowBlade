@@ -1,11 +1,24 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
+{% if request.user.is_authenticated %}  
+<h2>Edit Account</h2> 
+{% else %}
 <h2>Create Account</h2>
+{% endif %}
+
 <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
+    {% if request.user.is_authenticated %}     
+    <button type="submit">Submit</button>
+        
+    {% else %}
     <button type="submit">Create Account</button>
+    <h2>Create Account</h2>
+
+    {% endif %}
 </form>
 {% endblock %}
 

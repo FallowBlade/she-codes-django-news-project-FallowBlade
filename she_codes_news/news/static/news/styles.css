@@ -6,6 +6,14 @@
     flex-direction: row;
 }
 
+form {
+    text-align: center;
+}
+
+.form-item{
+    color: red;
+}
+
 #button {
 
     color: #0099CC; 
@@ -56,11 +64,19 @@
 }
 
 .story-card img {
-    width: 100%;
-    border-radius: 50%;
+    /* width: 100%;
     height: 300px;
     object-fit: cover;
+    position: relative; */
+    width: 200px;
+    height: 150px;
     position: relative;
+    display: inline-block;
+    overflow: hidden;
+    margin: 0;
+}
+#story-wrapper {
+    align-self: center;
 }
 
 .user-stories {
