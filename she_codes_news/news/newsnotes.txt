@@ -1,0 +1,18 @@
+
+Me in Views - trying to create author view
+context = ['author'] = CustomUser.objects.all().order_by('user')[:4]
+
+
+context ['author_name'] = CustomUser.objects.filter(author__username=CustomUser)
+
+
+ author = models.ForeignKey(
+        get_user_model(),
+        on_delete=models.CASCADE,
+    )
+
+ForeignKey means that there is a list
+
+
+All theat Djano is is the gate to let the data through.
+

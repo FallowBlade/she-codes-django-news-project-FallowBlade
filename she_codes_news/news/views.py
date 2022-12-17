@@ -2,6 +2,7 @@ from django.views import generic
 from django.urls import reverse_lazy
 from .models import NewsStory
 from .forms import StoryForm
+from users.models import CustomUser
 
 class IndexView(generic.ListView):
     template_name = 'news/index.html'
@@ -12,9 +13,10 @@ class IndexView(generic.ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['latest_stories'] = NewsStory.objects.all()[:4]
+        context['latest_stories'] = NewsStory.objects.all()[:6]
         # context['all_stories'] = NewsStory.objects.all()
-        context['old_stories'] = NewsStory.objects.all().order_by('pub_date')[:4]
+        context['old_stories'] = NewsStory.objects.all().order_by('pub_date')[:6]
+        context['news_author'] = CustomUser.objects.all()
         # old_stories orders your news stories by date.
         return context
         # This is saying get all of our news stories and use it in the index
@@ -40,6 +42,33 @@ class StoryView(generic.DetailView):
 	template_name = 'news/story.html'
 	context_object_name = 'story'
 
+
+class DeleteStoryView(generic.DeleteView):
+    model = NewsStory
+    template_name= "news/deleteStory.html"
+    context_object_name= "story"
+    success_url = reverse_lazy('news:index')
+
+    def get_object(self, queryset=None):
+        obj = super().get_object(queryset)
+        if obj.author != self.request.user:
+            raise PermissionDenied 
+        return obj
+
+#EDIT STORY
+#If I'm not the owner of story, I can't edit
+class EditStoryView(generic.UpdateView):
+    model=NewsStory
+    fields = ['title', 'pub_date', 'category', 'content']
+    template_name= "news/editStory.html"
+    context_object_name="story"
+    success_url= reverse_lazy('news:index')
+
+    def get_object(self, queryset=None):
+        obj=super().get_object(queryset)
+        if obj.author != self.request.user:
+                raise PermissionError
+        return obj
     # def img_form(request)
     #     form.instance.image_url = self.request.form
     #     return render( request, ).img_form(form)

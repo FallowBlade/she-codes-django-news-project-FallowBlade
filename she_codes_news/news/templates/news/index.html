@@ -8,7 +8,32 @@
 
 {% block content %}
 
-    <a href="{% url 'news:newStory' %}">Write New Story</a>
+    {% if request.user.is_authenticated %}
+    <div id="user-welcome">
+        <h3>Welcome, {{ user }}!</h3>
+    </div>
+
+    <button class="button-style">
+        <a href="{% url 'news:newStory' %}">Create Story</a>
+        {% else %}
+            <p>Please login to view page</p>
+        {% endif %}
+    </button>
+
+    <div id="authors">
+        <button> 
+            {% if news_author %}
+        
+            {% for author in news_author %}
+                <a href="{% url 'users:AccountProfile' author.id %}">{{ author }}</a>
+                {% endfor %}
+            {% else %}
+                <p>No authors exist.</p>          
+            {% endif %}
+
+        </button>
+      
+    </div>
 
     <!-- news/createStory -->
     
@@ -48,7 +73,7 @@
     <!-- Curly brackets allow us to put dynamic content into the webstie. If we don't use this, then we would only be able to display one thing -->
 
     <!-- latest-stories:
-    saying IF there are stories, loop through them with a FOR loop, and PRint there titles, Id there ARE NOT any, then print -->
+    saying IF there are stories, loop through them with a FOR loop, and PRint there titles, If there ARE NOT any, then print -->
 
     <!-- all-stories:
     print all stories, else if no stories, print none are available -->

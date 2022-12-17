@@ -3,16 +3,46 @@
 body {
     background-color: rgb(240, 239, 239);
 }
+/* header image style */
+#header-img {
+
+    
+}
+.button-style {
+    color: #0099CC; 
+	/* Text color */
+	background: transparent; /* Remove background color */
+	border: 2px solid #0099CC; /* Border thickness, line style, and color */
+	border-radius: 70px; /* Adds curve to border corners */
+	text-decoration-color: #0099CC;
+	text-transform: uppercase; /* Make letters uppercase */
+	border: #0099CC;
+	color: white;
+	padding: 16px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px 2px;
+	-webkit-transition-duration: 0.4s; /* Safari */
+	transition-duration: 0.4s;
+	cursor: pointer;
+}
+
 
 header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 1px solid #000;
+    border-bottom: 1px solid 
 }
 
 img {
-    filter: grayscale(100%);
+    filter: drop-shadow(8px 8px 80px gray);
+}
+
+.user-welcome {
+    background-color: #8246af;
 }
 
 h1 {
@@ -41,6 +71,7 @@ nav {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+    color: blue;
 }
 
 a {
@@ -52,3 +83,13 @@ a {
 a, p {
     font-family: monospace;
 }
+
+/* Write Story on createStory.html */
+#write-story {
+    text-decoration: none;
+    color: #FFA300;
+    font-size: 45px;
+    margin: 28px;
+    text-align: center;
+  }
+/* A widget is Django’s representation of an HTML input element. The widget handles the rendering of the HTML, and the extraction of data from a GET/POST dictionary that corresponds to the widget. */

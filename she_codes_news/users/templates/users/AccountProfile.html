@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div id="user-blog-intro">
+    <h2>{{ user }}'s Stories</h2>
+</div>
+   
+<div class="user-stories" id="user-stories">
+    {% if user_stories %}
+        {% for story in user_stories %}
+            {% include "news/storyCard.html" with story=story %}
+        {% endfor %}
+    {% else %}
+        <p>No stories are available.</p>
+    {% endif %}
+    {% endblock %}
+</div>
+

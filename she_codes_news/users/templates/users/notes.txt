@@ -1,0 +1,20 @@
+
+
+failed code in views.py:
+
+ class AccountProfileView(generic.AccountProfile):
+#     model = CustomUser
+#     template_name = 'users/AccountProfile.html'
+
+
+URLS:
+
+from .views import AccountProfileView
+
+urls patterns:
+    path('view-profile/', AccountProfileView.as_view(), name='AccountProfile'),
+
+
+   def add(request):
+        template = __loader__.get_template('newUser.html') 
+       return (template.render({},request))

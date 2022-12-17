@@ -1,0 +1,17 @@
+<!-- 
+<form action="" method="Post">
+    <h2>Delete Story</h2>
+    <form method="Delete"
+
+</form> -->
+
+<form action="" method="Post">
+    {% csrf_token %}
+    {{ form.as_p }}
+  
+    <h2>Delete Story</h2>
+
+    <input type="submit" value="Delete">
+
+</form>
+
