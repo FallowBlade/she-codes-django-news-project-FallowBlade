@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+{% if request.user.is_authenticated %}
+
+<div class="add-story-container">
+    <h2 id="write-story">Edit Story</h2>
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <div class="form-group">
+        <input type="submit" value="submit">
+    </div>
+</form>
+
+    {% else %}
+        <p>Please login to view page</p>
+{% endif %}
+</div>
+
+{% endblock %}

@@ -4,7 +4,12 @@
 
 {% block content %}
 
+{% if story.author == user %}
+    <h2>Edit Story</h2>
+{% endif %}
+
 {% if request.user.is_authenticated %}
+
 
 <div class="add-story-container">
     <h2 id="write-story">Write a Story!</h2>

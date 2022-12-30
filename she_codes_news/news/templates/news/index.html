@@ -8,6 +8,8 @@
 
 {% block content %}
 
+
+    <!-- news/createStory = if logged in, you can create/write your own story, if not logged in, display nothing -->
     {% if request.user.is_authenticated %}
     <div id="user-welcome">
         <h3>Welcome, {{ user }}!</h3>
@@ -15,12 +17,11 @@
 
     <button class="button-style">
         <a href="{% url 'news:newStory' %}">Create Story</a>
-        {% else %}
-            <p>Please login to view page</p>
         {% endif %}
     </button>
 
-    <!-- news/createStory -->
+
+        <!-- news/storyCard = display latest stories on site up to 4-->
     
     <h2>Latest News</h2>
     
@@ -35,9 +36,11 @@
         {% endif %}
     </div>
 
+    <h2>Other News</h2>
     <div id="all-stories">
-        {% if latest_stories %}
-            {% for story in all_stories %}
+
+        {% if old_stories %}
+            {% for story in old_stories %}
                 {% include "./storyCard.html" with story=story %}
                 <!-- <p>{{ story.title }}</p> -->
             {% endfor %}

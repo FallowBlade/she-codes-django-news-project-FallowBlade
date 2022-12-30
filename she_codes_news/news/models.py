@@ -14,7 +14,7 @@ class NewsStory(models.Model):
     )
     pub_date = models.DateTimeField()
     image_url =  models.URLField(blank=True)
-    # could also do in URLField(blank=True)
+    # could also do in URLField(default='http..', etc.)
     content = models.TextField()
     
 
