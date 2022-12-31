@@ -12,7 +12,6 @@ Create Story: http://127.0.0.1:8000/news/add-story/
 
 Account View: http://127.0.0.1:8000/users/1/edit
 
-
 Delete Stories: http://127.0.0.1:8000/news/5/deleteStory
 
 Edit Stories: http://127.0.0.1:8000/news/5/editStory
