@@ -6,6 +6,8 @@
 
 <link rel="stylesheet" type="text/css" href="{% static 'news/styles.css' %}">
 
+
+
 <div class="story-card" id="story-card-{{ position }}">
     <a href="{% url 'news:story' story.id %}">
         {% if story.image_url %}
