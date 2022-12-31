@@ -1,24 +1,53 @@
     
 {% extends "base.html" %}
 {% load static %}
-    
 {% block stylesheets %}
     <link rel="stylesheet" type="text/css" href="{% static 'news/styles.css' %}">
 {% endblock %}
 
 {% block content %}
 
+    <style> 
 
+    .button {
+        display: inline-flex;
+        align-items: center;
+        padding: 8px;
+        border: none;
+    }
+
+    a{
+        text-decoration: none;
+        color: black;
+    }
+    
+    .story-wrapper {
+        border-style: dashed;
+        border-color: #8246af;
+
+    }
+
+    a:hover{
+        color: black;
+        background-color: #8246af;
+    }
+    </style>
+
+<body>
     <!-- news/createStory = if logged in, you can create/write your own story, if not logged in, display nothing -->
     {% if request.user.is_authenticated %}
-    <div id="user-welcome">
-        <h3>Welcome, {{ user }}!</h3>
+    
+   
+    <div id="user-welcome"> 
+        <p>Welcome, {{ user }}!</p>
     </div>
 
-    <button class="button-style">
-        <a href="{% url 'news:newStory' %}">Create Story</a>
+
+    
+
+    <!-- <button class="button-style">
+        <a href="{% url 'news:newStory' %}">Create Story</a> -->
         {% endif %}
-    </button>
 
 
         <!-- news/storyCard = display latest stories on site up to 4-->
@@ -49,6 +78,7 @@
         {% endif %}
     </div>
 
+</body>
 {% endblock %}
     
 <!--  -->
